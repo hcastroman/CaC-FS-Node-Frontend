@@ -1,0 +1,433 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  background-image: url('../IMAGENES/FondoMadera.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* 1. Desde aqui el header  */
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-image: url('../IMAGENES/Texturado1.PNG');
+  background-size: cover;
+  z-index: 1000;
+  /* Asegura que esté por encima del contenido */
+}
+
+.header_grid_layout {
+  height: 60px;
+  display: grid;
+  grid-template-areas:
+    "nombre hamb";
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 100%;
+  border: 1px solid black;
+  overflow: hidden;
+  justify-content: stretch;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.div_redes {
+    display: none;
+  }
+
+.div_header_logo {
+  grid-area: nombre;
+  height: 100%;
+  position: relative;
+}
+
+.div_header_logo img {
+  position: absolute;
+  max-height: 90%;
+}
+
+/* 1.a. Menu Hamburguesa */
+
+.div_menu_hamb {
+  grid-area: hamb;
+  background-color: white;
+  position: relative;
+}
+
+.hamb {
+  cursor: pointer;
+  float: right;
+  padding: 40px 20px;
+}
+
+.hamb_line {
+  background: black;
+  position: absolute;
+  height: 2px;
+  width: 24px;
+  top: 30px;
+  right: 25px;
+}
+
+.hamb_line::before,
+.hamb_line::after {
+  background: black;
+  content: '';
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.hamb_line::before {
+  top: 5px;
+}
+
+.hamb_line::after {
+  top: -5px;
+}
+
+.side_menu {
+  display: none;
+}
+
+.side_menu:checked~.menu_nav {
+  max-height: 100%;
+}
+
+.side_menu:checked~.hamb .hamb_line {
+  background: transparent;
+}
+
+.side_menu:checked~.hamb .hamb_line::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.side_menu:checked~.hamb .hamb_line::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/* 1.a. Fin Menu Hamburguesa */
+
+.menu_nav {
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(128, 120, 243);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .5s ease-out;
+}
+
+.menu a {
+  display: block;
+  padding: 30px;
+  color: white;
+}
+
+.menu a:hover {
+  background-color: rgb(78, 47, 255);
+
+}
+
+
+
+/* 1. Fin del header */
+
+
+/* 2. Resto Main */
+
+
+/* Carrusel de Promociones */
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Ocultar la barra de desplazamiento */
+  -ms-overflow-style: none;
+  /* Ocultar la barra de desplazamiento (Internet Explorer y Edge) */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+  /* Ocultar la barra de desplazamiento (Chrome, Safari, Opera) */
+}
+
+.slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  margin-right: 10px;
+  width: 300px;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  padding: 10px;
+}
+
+.caption h3 {
+  margin-top: 0;
+}
+
+.caption p {
+  margin-bottom: 0;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+
+/* Fin Carrusel de Promociones */
+
+
+
+section[id] {
+    scroll-margin-top: 30px;
+    padding: 20px;
+  }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image:hover img {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image:hover .overlay {
+  opacity: 1;
+}
+
+
+.container_contacto {
+  display: flex;
+  position: relative;
+  gap: 20px;
+flex-wrap: wrap;
+}
+
+.div_iframe iframe {
+  width: 100%;
+  height: 100%; 
+}
+
+
+
+/* 2. Fin Main */
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+/* Tablets */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .header_grid_layout {
+    height: 140px;
+    display: grid;
+    grid-template-areas:
+      "nombre"
+      "menu_pc";
+    grid-template-columns: 100%;
+    grid-template-rows: 70% 30%;
+  }
+
+  .div_menu_hamb {
+    display: none;
+  }
+
+  .menu_nav {
+    grid-area: menu_pc;
+    max-height: 100%;
+    top: 0;
+    position: relative;
+    width: 100%;
+    background-color: gray;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .menu a {
+    padding: 9px;
+    color: white;
+  }
+
+  .menu a:hover {
+    background-color: transparent;
+    color: rgb(174, 154, 230);
+  }
+
+  .hamb {
+    display: none;
+  }
+}
+
+
+
+/* Escritorio */
+@media (min-width: 768px) {
+
+    .header_grid_layout {
+        height: 140px;
+        display: grid;
+        grid-template-areas:
+          "nombre redes"
+          "menu_pc menu_pc";
+        grid-template-columns: 80% 20%;
+        grid-template-rows: 70% 30%;
+      }
+       
+      .div_redes {
+        display: flex;
+        grid-area: redes;
+        justify-content: right;
+      }
+
+      .div_redes i {
+        font-size: 30px;
+        color: black;
+        border-radius: 50%;
+        padding: 15px;
+        box-shadow: 0px 5px 10px rgb(0, 0, 0, .35);
+        transition: .3s ease;
+ 
+      }
+
+      .div_redes a {
+        padding: 10px;
+      }
+
+  .div_menu_hamb {
+    display: none;
+  }
+
+  .menu_nav {
+    grid-area: menu_pc;
+    max-height: 100%;
+    top: 0;
+    position: relative;
+    width: 100%;
+    background-color: gray;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .menu a {
+    padding: 9px;
+    color: white;
+  }
+
+  .menu a:hover {
+    background-color: transparent;
+    color: rgb(174, 154, 230);
+  }
+
+  .hamb {
+    display: none;
+  }
+
+  section[id] {
+    scroll-margin-top: 120px;
+  }
+}
